@@ -1,0 +1,27 @@
+# .github/AI.yaml
+# AI Usage & Responsible AI Guidelines
+# Enforced by MCD Framework
+
+ai:
+  allowed: true
+  note: "This repo {{ repo_name }} is managed by MCD Enforcer"
+  approved_models:
+    - gpt-4o
+    - gpt-4o-mini
+    - claude-3-5-sonnet
+    - gemini-1.5-pro
+  restricted_models:
+    - openai:o1-preview
+    - openai:o1-mini
+  usage_guidelines:
+    - "Do NOT input any sensitive data, PII, credentials, or customer information"
+    - "Review all AI-generated code for security, correctness, and licensing"
+    - "Document AI usage in pull request descriptions when >20% of code is AI-generated"
+    - "Use AI only for code generation, documentation, test cases, refactoring"
+  review_required_for:
+    - files: ["*.py", "*.js", "*.ts"]
+      ai_contribution_threshold: 0.3   # 30%+ AI-generated → requires code owner review
+  reporting:
+    enabled: true
+    issue_label: "ai-generated"
+    notify_team: "security-team"

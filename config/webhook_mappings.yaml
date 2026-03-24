@@ -1,0 +1,6 @@
+mcd-framework-test:
+  - url: https://hooks.example.com/ci
+    events: [push]
+    secret: "{{ secrets.WEBHOOK_SECRET }}"   # same secret for simplicity
+    content_type: json
+    active: true

@@ -1,0 +1,69 @@
+organization: sharvmahajan
+
+target_repos:
+  - mcd-framework-test
+
+required_files:
+  - path: .github/APM.yaml
+    template: APM.yaml
+    commit_message: "Add APM configuration [MCD Enforcer]"
+
+  - path: .github/.whitesource
+    template: .whitesource
+    commit_message: "Add Whitesource configuration [MCD Enforcer]"
+
+  - path: .github/AI.yaml
+    template: AI.yaml
+    commit_message: "Add AI guidelines configuration [MCD Enforcer]"
+
+branch_protection:
+  enabled: true
+  branch: main
+  required_approving_review_count: 1
+  require_code_owner_reviews: true
+  dismiss_stale_reviews: true
+  enforce_admins: true
+  required_status_checks:
+    strict: true
+    contexts:
+      - "ci/build"
+      - "security/scan"
+  restrictions:
+    users: []
+    teams:
+      - platform-eng
+    apps: []
+  allow_force_pushes: false
+  allow_deletions: false
+  allow_merge_commit: false
+  allow_squash_merge: true
+  allow_rebase_merge: false
+  allow_auto_merge: false
+
+environments:
+  - name: qual
+    wait_timer: 0
+    deployment_branch_policy:
+      protected_branches: true
+      custom_branch_policies: false
+    required_reviewers:
+      users: [192594474]          # ← REPLACE with your actual numeric user ID (see below how to find it)
+      teams: []                     # empty = safe on personal repo
+    description: "Quality/Pre-production environment"
+
+  - name: prod
+    wait_timer: 5
+    deployment_branch_policy:
+      protected_branches: true
+      custom_branch_policies: false
+    required_reviewers:
+      users: [192594474]          # ← same user ID as above
+      teams: []                     # empty = safe
+    description: "Production environment – restricted access"
+
+webhooks_global:
+  - url: https://hooks.example.com/security
+    events: [push, pull_request]
+    secret: "{{ secrets.WEBHOOK_SECRET }}"   # references the name
+    content_type: json
+    active: true

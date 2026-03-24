@@ -1,0 +1,9 @@
+# templates/APM.yaml
+# Minimal test template for APM config
+apm:
+  enabled: true
+  service_name: "{{ repo_name }}-service"
+  environment: dev
+  tags:
+    - "repo:{{ repo_full_name }}"
+    - "branch:{{ default_branch }}"

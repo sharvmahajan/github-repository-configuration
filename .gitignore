@@ -1,0 +1,53 @@
+# =========================
+# Python
+# =========================
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Virtual Environment
+.venv/
+venv/
+env/
+
+# =========================
+# Secrets / Env
+# =========================
+.env
+
+# =========================
+# Generated Reports
+# =========================
+reports/*
+!reports/.gitkeep
+
+# If reports also generate these formats anywhere
+*.pdf
+*.html
+*.json
+
+# =========================
+# Logs / Temp
+# =========================
+*.log
+*.tmp
+*.cache
+
+# =========================
+# VS Code
+# =========================
+.vscode/
+
+# =========================
+# Testing / Coverage
+# =========================
+.pytest_cache/
+.coverage
+htmlcov/
+
+# =========================
+# OS Junk
+# =========================
+.DS_Store
+Thumbs.db
